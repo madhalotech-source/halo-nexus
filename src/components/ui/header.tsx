@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { CtaButton } from "@/components/ui/cta-button";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -57,12 +58,9 @@ export function Header() {
           {isDark ? "☀️" : "🌙"}
         </button>
         
-        <Link
-          href="#contact"
-          className="hidden md:inline-block px-5 py-2 rounded-md bg-accent text-white text-sm font-medium hover:bg-accent-light transition-colors"
-        >
-          Get Started
-        </Link>
+        <CtaButton className="hidden md:inline-block px-5 py-2 rounded-md bg-accent text-white text-sm hover:bg-accent-light transition-colors">
+  Get Started
+</CtaButton>
 
         {/* Mobile menu button */}
         <button
@@ -89,13 +87,14 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-            className="px-5 py-2 rounded-md bg-accent text-white text-sm font-medium text-center"
-          >
-            Get Started
-          </Link>
+          
+<CtaButton
+  onClick={() => setMenuOpen(false)}
+  className="px-5 py-2 rounded-md bg-accent text-white text-sm"
+>
+  Get Started
+</CtaButton>
+
         </nav>
       )}
     </header>

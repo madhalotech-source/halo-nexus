@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,9 +20,13 @@ export default function SignupPage() {
 
     const supabase = createClient();
     const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+  email,
+  password,
+  options: {
+    data: { full_name: fullName },
+    emailRedirectTo: '${window.location.origin}/login?confirm=1',
+  },
+});
 
     setLoading(false);
 
@@ -44,6 +49,14 @@ export default function SignupPage() {
         </p>
 
         <form onSubmit={handleSignup} className="flex flex-col gap-4">
+         <input
+           type="text"
+           required
+           value={fullName}
+           onChange={(e) => setFullName(e.target.value)}
+           placeholder="Full Name"
+           className="bg-transparent border border-card-border rounded-md px-3 py-2 text-sm outline-none focus:border-accent transition-colors"
+         /> 
           <input
             type="email"
             required
