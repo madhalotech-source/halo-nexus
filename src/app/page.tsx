@@ -41,7 +41,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
-        <HeroVideo />
+        <HeroVideo src="/hero-video.mp4" />
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight max-w-3xl">
           The Digital Operating System for{" "}
           <span className="text-accent-gold">M A D HALO Technologies</span>

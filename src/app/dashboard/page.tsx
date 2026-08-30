@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { AvatarUpload } from "@/components/ui/avatar-upload";
 import { LogoutButton } from "@/components/ui/logout-button";
+import { AccountSettings } from "@/components/ui/account-settings";
+
 
 
 export default async function DashboardPage() {
@@ -17,7 +19,7 @@ export default async function DashboardPage() {
 
 const { data: profile } = await supabase
   .from("profiles")
-  .select("full_name, email, created_at, avatar_url")
+  .select("full_name, email, created_at, avatar_url, phone, country")
   .eq("id", user.id)
   .single();
 
@@ -47,10 +49,14 @@ const { data: profile } = await supabase
 </div>
 
         <div className="glass-panel rounded-xl p-8 border border-card-border">
-          <p className="text-muted-foreground">
-            More dashboard features coming soon.
-          </p>
-        </div>
+  <h2 className="text-lg font-semibold mb-4">Account Settings</h2>
+  <AccountSettings
+    userId={user.id}
+    currentFullName={profile?.full_name ?? ""}
+    currentPhone={profile?.phone ?? null}
+    currentCountry={profile?.country ?? null}
+  />
+</div>
       </div>
     </div>
   );
