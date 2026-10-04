@@ -1,6 +1,6 @@
 \# halo-nexus
 
-
+ongoing 
 
 Digital Operating System for MAD HALO Technologies
 
